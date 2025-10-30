@@ -15,7 +15,7 @@ const CITIES = {
 
 const RAIN_CONDITIONS = ["Thunderstorm", "Drizzle", "Rain"];
 
-const FORECAST_WINDOW_HOURS = 9;
+const FORECAST_WINDOW_HOURS = 12;
 const FORECAST_PERIODS_TO_CHECK = FORECAST_WINDOW_HOURS / 3;
 
 export async function checkWeatherAndSendAlert() {
@@ -33,7 +33,6 @@ export async function checkWeatherAndSendAlert() {
       throw new Error(`Failed to fetch weather forecast for ${city.name}`);
 
     const data = await response.json();
-
     const upcomingForecasts = data.list.slice(0, FORECAST_PERIODS_TO_CHECK);
 
     const firstRainyForecast = upcomingForecasts.find((forecast: any) =>
@@ -53,7 +52,6 @@ export async function checkWeatherAndSendAlert() {
   });
 
   const allForecastData = await Promise.all(weatherPromises);
-
   const citiesWithRain = allForecastData.filter(
     (city): city is WeatherData => city !== null
   );
@@ -65,7 +63,6 @@ export async function checkWeatherAndSendAlert() {
     const { data, error } = await resend.emails.send({
       from: "Rain Alert <onboarding@resend.dev>",
       to: [EMAIL_TO_ADDRESS],
-      // UPDATED: Subject line now says "Forecast"
       subject: `🌧️ Rain Forecast for ${cityNames}`,
       react: <WeatherAlertEmail citiesWithRain={citiesWithRain} />,
     });

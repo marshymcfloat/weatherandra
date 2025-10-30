@@ -29,10 +29,10 @@ const WeatherAlertEmail: React.FC<Readonly<EmailTemplateProps>> = ({
   <div style={main}>
     <div style={container}>
       <div style={card}>
-        <h1 style={heading}>Hi, baby ko!</h1>
+        <h1 style={heading}>Heads up, baby ko!</h1>
         <p style={text}>
           Hi baby! I checked the weather for you. Mukhang may high chance of
-          rain mamaya sa mga lugar na 'to:
+          rain within the next 12 hours sa mga lugar na 'to:
         </p>
         {citiesWithRain.map((city, index) => (
           <div
@@ -61,7 +61,7 @@ const WeatherAlertEmail: React.FC<Readonly<EmailTemplateProps>> = ({
         ))}
         <p style={text}>
           Kaya don't forget to bring your umbrella, ha? Ingat ka palagi pag
-          aalis ka. I love you! 😘
+          aalis ka. I love you!
         </p>
       </div>
     </div>
