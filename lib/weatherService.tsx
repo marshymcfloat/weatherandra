@@ -61,7 +61,7 @@ export async function checkWeatherAndSendAlert() {
     const cityNames = citiesWithRain.map((c) => c.name).join(" and ");
 
     const { data, error } = await resend.emails.send({
-      from: "Rain Alert <onboarding@resend.dev>",
+      from: "Rain Alert <alerts@beautyfeel.net>",
       to: [EMAIL_TO_ADDRESS],
       subject: `🌧️ Rain Forecast for ${cityNames}`,
       react: <WeatherAlertEmail citiesWithRain={citiesWithRain} />,
